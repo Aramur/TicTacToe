@@ -6,8 +6,9 @@
 
     <style>
         body{
-            background-color: white;
+            background-color: black;
             text-align: center;
+            color: darkred;
         }
         table{
             margin: auto;
@@ -58,10 +59,17 @@
         <button type="sumbit" name= "button" value= "7">7</button>
         <button type="sumbit" name= "button" value= "8">8</button>
         <button type="sumbit" name= "button" value= "9">9</button>
+        <br>
+        <button type="sumbit" name= "reset">Neustart</button>
     </form>
 
     <?php
+        session_start();
+
         $WerIstDran = 0;
+        if(isset($_SESSION['werIstDran'])){
+            $WerIstDran = $_SESSION['werIstDran'];
+        }
         $number;
         $feldbesetzung = [
             1 => 'leer',
@@ -74,6 +82,9 @@
             8 => 'leer',
             9 => 'leer'
         ];
+        if(isset($_SESSION['feldbesetzung'])){
+            $feldbesetzung = $_SESSION['feldbesetzung'];
+        }
 
         $lösungen = [
             123,
@@ -89,10 +100,16 @@
         if(!empty($_POST)){
             if (isset($_POST['button'])){
                 $number =  $_POST['button'];
-            }
-            welchessymbol($number, $feldbesetzung, $WerIstDran);
 
-            var_dump($feldbesetzung);
+                welchessymbol($number, $feldbesetzung, $WerIstDran);
+                $_SESSION['werIstDran'] = $WerIstDran;
+                $_SESSION['feldbesetzung'] = $feldbesetzung;
+
+                var_dump($feldbesetzung);
+            }
+            if (isset($_POST['reset'])){
+                sessionLöschen();
+            }
         }
 
 
@@ -110,6 +127,11 @@
                     $WerIstDran = 0;
                 }
             }
+        }
+
+        function sessionLöschen(){
+            $_SESSION['werIstDran'] = NULL;
+            $_SESSION['feldbesetzung'] = NULL;
         }
     ?>
 
