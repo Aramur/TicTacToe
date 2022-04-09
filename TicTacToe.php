@@ -8,22 +8,18 @@
         body{
             background-color: black;
             text-align: center;
-            color: darkred;
+            color: deepskyblue;
         }
         table{
             margin: auto;
             border-collapse: collapse;
-            color: darkred;
+            color: deepskyblue;
         }
         td{
-            border: 1px solid darkred;
+            border: 1px solid deepskyblue;
             width: 100px;
             height: 100px;
             text-align: center;
-        }
-        img{
-         height: 75px;
-         width: 75px;
         }
     </style>
 </head>
@@ -55,8 +51,7 @@
         if(isset($_SESSION['feldbesetzung'])){
             $feldbesetzung = $_SESSION['feldbesetzung'];
         }
-
-        if($gewonnen == 0);{
+        if($gewonnen == 0){
             $WerIstDran = 0;
             if(isset($_SESSION['werIstDran'])){
                 $WerIstDran = $_SESSION['werIstDran'];
@@ -74,28 +69,27 @@
                     werHatGewonnen('Peppershopsymbol', $gewonnen, $feldbesetzung);
                 }
             }
-
             $_SESSION['gewonnen'] = $gewonnen;
         }
 
         if($gewonnen == 1){
-            echo 'Glarotech hat gewonnen!';
+            $write = '<img src="images/glarotech_weiss_blau.png" height="25" width="25"> hat gewonnen!';
         }
         elseif($gewonnen == 2){
-            echo 'Peppershopsymbol hat gewonnen!';
+            $write = '<img src="images/peppershop_logo_hires.png" height="25" width="25"> hat gewonnen!';
         }
 
+
         function welchessymbol($number, &$feldbesetzung, &$WerIstDran){
-            if($feldbesetzung[$number] == 'leer'){
-                if($WerIstDran == 0){
+            if($feldbesetzung[$number] == 'leer' && $WerIstDran == 0){
                     $feldbesetzung[$number] = 'Peppershopsymbol';
                     $WerIstDran = 1;
-                }
-                else{
+            }
+            elseif($feldbesetzung[$number] == 'leer'){
                     $feldbesetzung[$number] = 'Glarotechsymbol';
                     $WerIstDran = 0;
                 }
-            }
+
         }
 
         function sessionLöschen(){
@@ -109,10 +103,10 @@
                 echo $feld;
             }
             elseif($feldbesetzung[$feld] == 'Peppershopsymbol'){
-            echo '<img src="images/peppershop_logo_hires.png">';
+            echo '<img src="images/peppershop_logo_hires.png" height="75" width="75">';
             }
             elseif($feldbesetzung[$feld] == 'Glarotechsymbol'){
-                echo '<img src="images/glarotech_weiss_blau.png">';
+                echo '<img src="images/glarotech_weiss_blau.png" height="75" width="75">';
             }
         }
 
@@ -138,7 +132,7 @@
     ?>
 
 
-    <h1><span style="color:darkred">Glarotech Tic-Tac-Toe</span></h1>
+    <h1>Glarotech Tic-Tac-Toe</h1>
     <table>
         <tr>
             <td><?php symboleanzeigen(1, $feldbesetzung)?></td>
@@ -170,4 +164,11 @@
         <button type="sumbit" name= "button" value= "9">9</button>
         <button type="sumbit" name= "reset">Neustart</button>
     </form>
+    <h2>
+        <?php
+            if(isset($write)){
+                echo $write;
+            }
+        ?>
+    </h2>
 </body>
