@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="de">
 
+<?php
+session_start();
+?>
+
 <head>
     <title>TicTacToe</title>
 
     <style>
-        body{
+        body {
             background-color: #222222;
             text-align: center;
             color: deepskyblue;
         }
-        table{
+
+        table {
             margin: auto;
             border-collapse: collapse;
             color: deepskyblue;
         }
-        td{
+
+        td {
             border: 1px solid deepskyblue;
             width: 100px;
             height: 100px;
@@ -26,7 +32,6 @@
 
 <body>
     <?php
-    session_start();
 
     if (isset($_POST["reset"])) {
         sessionLöschen();
@@ -168,17 +173,17 @@
     </table>
 
     <br>
-    <form  action="#" method="post">
-        <button type="sumbit" name= "button" value= "1">1</button>
-        <button type="sumbit" name= "button" value= "2">2</button>
-        <button type="sumbit" name= "button" value= "3">3</button>
-        <button type="sumbit" name= "button" value= "4">4</button>
-        <button type="sumbit" name= "button" value= "5">5</button>
-        <button type="sumbit" name= "button" value= "6">6</button>
-        <button type="sumbit" name= "button" value= "7">7</button>
-        <button type="sumbit" name= "button" value= "8">8</button>
-        <button type="sumbit" name= "button" value= "9">9</button>
-        <button type="sumbit" name= "reset">Neustart</button>
+    <form action="#" method="post">
+        <button type="sumbit" name="button" value="1">1</button>
+        <button type="sumbit" name="button" value="2">2</button>
+        <button type="sumbit" name="button" value="3">3</button>
+        <button type="sumbit" name="button" value="4">4</button>
+        <button type="sumbit" name="button" value="5">5</button>
+        <button type="sumbit" name="button" value="6">6</button>
+        <button type="sumbit" name="button" value="7">7</button>
+        <button type="sumbit" name="button" value="8">8</button>
+        <button type="sumbit" name="button" value="9">9</button>
+        <button type="sumbit" name="reset">Neustart</button>
     </form>
     <h2>
         <?php
@@ -188,3 +193,5 @@
         ?>
     </h2>
 </body>
+
+</html>
