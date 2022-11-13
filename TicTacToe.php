@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html lang="de">
-
 <?php
 session_start();
 ?>
+
+<!DOCTYPE html>
+<html lang="de">
 
 <head>
     <title>TicTacToe</title>
@@ -32,7 +32,6 @@ session_start();
 
 <body>
     <?php
-
     if (isset($_POST["reset"])) {
         sessionLöschen();
     }
